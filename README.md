@@ -35,7 +35,7 @@ def page(request, slug='index'):
 ```
    将自动执行build.py中的自定义命令， 该命令将 django模板，url等动态技术生成的内容转换成真正的静态
     
-3. [django-compressor 压缩静态文件](./django-compressor 压缩静态文件.md)
+3. [django-compressor 压缩静态文件](https://github.com/ShawSpring/sitebuilder/blob/master/django-compressor%20%E5%8E%8B%E7%BC%A9%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6.md)
 
 4. 缓存 和 哈希化 css 和 js文件
     setting中：
@@ -49,12 +49,12 @@ def page(request, slug='index'):
 
     from django.template.loader_tags import BlockNode
 
-import logging
-logging.basicConfig(
-    level=logging.INFO,
-    filename='a.log',
-    filemode='w',
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    import logging
+    logging.basicConfig(
+        level=logging.INFO,
+        filename='a.log',
+        filemode='w',
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
     def get_page_or_404(name):
