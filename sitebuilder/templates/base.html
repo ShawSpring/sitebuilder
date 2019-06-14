@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles compress%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %} Rapid Prototypes {% endblock %}</title>
+
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    {% endcompress %}
 </head>
 
 <body id="{% block body-id %} body {% endblock %}">
@@ -48,8 +51,10 @@
 
     {% block content %} {% endblock %}
 
+    {% compress js %}
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% endcompress %}
 </body>
 
 </html>

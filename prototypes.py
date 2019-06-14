@@ -12,7 +12,7 @@ settings.configure(
     DEBUG=True,
     ROOT_URLCONF='sitebuilder.urls',
     ALLOWED_HOSTS=[],
-
+    COMPRESS_ENABLED=True,
     # Application definition
     INSTALLED_APPS=[
         # 'django.contrib.admin',
@@ -20,8 +20,9 @@ settings.configure(
         # 'django.contrib.contenttypes',
         # 'django.contrib.sessions',
         # 'django.contrib.messages',
-        'sitebuilder',
         'django.contrib.staticfiles',
+        'sitebuilder',
+        'compressor',  # 添加compressor moudle
     ],
     MIDDLEWARE=[
         # 'django.middleware.security.SecurityMiddleware',
@@ -52,36 +53,13 @@ settings.configure(
     STIE_OUTPUT_DIRECTORY=os.path.join(BASE_DIR, '_build'),  ##生成的静态文件存放路径
     STATIC_URL='/static/',
     STATIC_ROOT=os.path.join(BASE_DIR, '_build', 'static'),
-    STATICFILES_STORAGE='django.contrib.staticfiles.storage.CachedStaticFilesStorage',
+    STATICFILES_FINDERS=(
+        'django.contrib.staticfiles.finders.FileSystemFinder',
+        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+        'compressor.finders.CompressorFinder'),
+
+    #STATICFILES_STORAGE='django.contrib.staticfiles.storage.CachedStaticFilesStorage',
     # ↑ 使用静态文件缓存，当debug=False时， 文件名后边会有一串哈希值因此独一无二，一旦文件改变则不会在使用缓存。
-
-    # # Database
-    # # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #     }
-    # }
-
-    # # Password validation
-    # # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
-
-    # AUTH_PASSWORD_VALIDATORS = [
-    #     {
-    #         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    #     },
-    #     {
-    #         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    #     },
-    #     {
-    #         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    #     },
-    #     {
-    #         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    #     },
-    # ]
 )
 
 if __name__ == '__main__':
