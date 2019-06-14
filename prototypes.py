@@ -52,6 +52,8 @@ settings.configure(
     STIE_OUTPUT_DIRECTORY=os.path.join(BASE_DIR, '_build'),  ##生成的静态文件存放路径
     STATIC_URL='/static/',
     STATIC_ROOT=os.path.join(BASE_DIR, '_build', 'static'),
+    STATICFILES_STORAGE='django.contrib.staticfiles.storage.CachedStaticFilesStorage',
+    # ↑ 使用静态文件缓存，当debug=False时， 文件名后边会有一串哈希值因此独一无二，一旦文件改变则不会在使用缓存。
 
     # # Database
     # # https://docs.djangoproject.com/en/2.1/ref/settings/#databases

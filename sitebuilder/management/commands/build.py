@@ -28,14 +28,17 @@ class Command(BaseCommand):
     5. 遍历pages目录下的所有 .html文件，reverse()反转出url,再用client.get(url)得到html页面
     6. 将得到的response写入output目录下
     7. 运行该 自定义的管理命令： python prototypes.py build
+       或者python prototypes.py build index
     8. 测试静态站点：cd _build, python -m http.server 9000
     """
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser):  #build命令后带参数
         parser.add_argument('args', nargs='*')
 
     def handle(self, *args, **options):
         """request pages and build output"""
+        settings.DEBUG = False
+
         if args:  # pages 有参数决定
             pages = args
             available = list(get_pages())
