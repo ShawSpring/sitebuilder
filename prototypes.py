@@ -2,11 +2,12 @@
 import os
 import sys
 
-from django.conf import settings
+from django.conf import settings, global_settings
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 settings.configure(
+    default_settings=global_settings,  ##这样才能全局的访问到 settings.xxx
     SECRET_KEY='iplp!i75$8@mcp@$mv%knrnf36ka@rwqx41avhsy=i%2+b=i_g',
     DEBUG=True,
     ROOT_URLCONF='sitebuilder.urls',
@@ -46,9 +47,11 @@ settings.configure(
             # },
         },
     ],
-    STATIC_URL='/static/',
-    # SITE_PAGES_DIRECTORY=os.path.join(BASE_DIR,'pages'),
     WSGI_APPLICATION='sitebuilder.wsgi.application',
+    SITE_PAGES_DIRECTORY=os.path.join(BASE_DIR, 'pages'),
+    STIE_OUTPUT_DIRECTORY=os.path.join(BASE_DIR, '_build'),  ##生成的静态文件存放路径
+    STATIC_URL='/static/',
+    STATIC_ROOT=os.path.join(BASE_DIR, '_build', 'static'),
 
     # # Database
     # # https://docs.djangoproject.com/en/2.1/ref/settings/#databases

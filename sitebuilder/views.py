@@ -6,13 +6,10 @@ from django.shortcuts import render
 from django.template import Template
 from django.utils._os import safe_join
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-SITE_PAGES_DIRECTORY = os.path.join(BASE_DIR, 'pages')
-
 
 def get_page_or_404(name):
     try:
-        file_path = safe_join(SITE_PAGES_DIRECTORY, name)
+        file_path = safe_join(settings.SITE_PAGES_DIRECTORY, name)
     except ValueError:
         raise Http404('Page not found!')
     else:
